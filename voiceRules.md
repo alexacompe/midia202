@@ -41,7 +41,7 @@ Ritmo: alterna respiro editorial e densidade técnica card a card. Nunca dois ca
 - Ponto verde como sinal de "agora", fechando a sentença-chave.
 - Prova social de autoridade cedo (ITA) para comprar credibilidade antes do argumento.
 - Dado que "muda a conta": número contraintuitivo que reancora o problema.
-- Marcador de continuidade ("arraste →", "n/6") para puxar o swipe — a função, nunca o rótulo "SWIPE".
+- Marcador de continuidade ("arraste →") para puxar o swipe — a função, nunca o rótulo "SWIPE". (A amostra usa só "arraste →", sem numeração de slides.)
 
 ## Nunca
 - Itálico swashy longo; mono em frase longa.
