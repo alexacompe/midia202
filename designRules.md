@@ -49,14 +49,36 @@ mono-label       11–12px / uppercase / tracking 0.1em
 - A marca fala grande ou fala pequeno: evitar tamanhos médios burocráticos.
 - Título tratamento "B": parte forte + complemento em peso leve (Light 300, `#d5d5d0`) + ponto verde final. Contraste de **peso**, não de estilo.
 
-## Layout (card de Instagram, ~4:5)
+## Layout (card de Instagram) — MÉTRICA MEDIDA na amostra real
+
+```
+# Canvas
+1296 × 1620 px  (4:5 exato)  — fundo --preto-202 ou --papel
+
+# Margem de segurança (medida: texto/wordmark nunca cruza)
+lateral (esq/dir)   ~124 px   (≈9.6% da largura)
+superior            ~128 px   (≈8% da altura)
+inferior            ~128 px   (≈8% da altura)
+# Regra escalável: margem = ~9.6% da largura do canvas (para outros tamanhos)
+
+# Grade vertical (3 faixas, como o grid .tela do site: topo / centro / base)
+topo    kicker mono uppercase, baseline ~132 px do topo, na margem esquerda
+centro  título display (+ subtítulo opcional logo abaixo), ocupa a faixa central
+base    wordmark no rodapé esquerdo; "arraste →" no rodapé direito, ambos na baseline ~124-128 px do fundo
+
+# Meia-composição (SÓ card com imagem/print externo)
+faixa de imagem = 39% superior da altura (~632 px)  |  texto nos 61% inferiores
+imagem sempre ACIMA, corte reto horizontal
+```
+
 - Uma ideia por card. Muito respiro, preto profundo, título display na faixa vertical central.
-- Kicker mono uppercase (`--cinza-texto`) ancorando o topo, acima do título display.
+- Kicker mono uppercase (`--cinza-texto`) ancorando o topo, na margem esquerda, ~132px do topo.
 - Título display + **ponto verde final** como unidade de fechamento da headline.
-- Subtítulo de apoio opcional em Inter/`--cinza-texto`, 1–2 linhas, abaixo do título.
-- Wordmark `202Lab.` discreto no rodapé do card (com ponto verde).
-- Marca d'água "202" gigante, baixo contraste, atrás do texto (cards de abertura/fecho).
-- Carrossel: marcador de continuidade ("arraste →") e numeração "n/6". Adotar a função, nunca o rótulo "SWIPE".
+- Subtítulo de apoio opcional em Inter/`--cinza-texto`, 1–2 linhas, logo abaixo do título.
+- Wordmark `202Lab.` no rodapé esquerdo, alinhado à margem lateral (~124px), baseline ~124px do fundo.
+- "arraste →" (mono, `--cinza-texto`) no rodapé direito, alinhado à margem direita. Só em cards que não sejam o último.
+- Marca d'água "202" gigante, baixo contraste (contorno `--cinza-linha`), atrás do texto — cards de abertura/fecho.
+- Todo texto e todo elemento de rodapé respeitam a margem de ~124px. Nada encosta na borda.
 
 ## Logo e marca
 - Grafia no card de Instagram: **`202Lab.`** (com ponto verde), no rodapé. Variante curta `202`. (A grafia `202LAB` caixa-alta é só para rodapé de deck/PDF — não usar em Instagram.)
