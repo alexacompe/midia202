@@ -14,8 +14,9 @@ Racional, fontes e pendências ficam em `design-system.md` (governança).
 --cinza-texto      #8B8B85   microcopy mono, metadados, legendas, subtítulos
 --cinza-linha      #262626   hairlines/bordas sobre preto
 --cinza-linha-lt   #D9D6CE   hairlines sobre papel
---verde-sinal      #C6FF3E   acento sobre preto (ponto final, link ativo, dado vivo)
+--verde-sinal      #C6FF3E   VERDE OFICIAL DA MARCA. acento sobre preto (ponto final, link ativo, dado vivo)
 --verde-tinta      #3D7A00   verde para fundo claro (contraste)
+# (verde-codigo #28D305 é efeito do hero do site — NÃO usar em criativos)
 
 # Fontes
 marca      The Seasons     só logo/wordmark (SVG). Nunca em texto.
@@ -58,14 +59,14 @@ mono-label       11–12px / uppercase / tracking 0.1em
 - Carrossel: marcador de continuidade ("arraste →") e numeração "n/6". Adotar a função, nunca o rótulo "SWIPE".
 
 ## Logo e marca
-- Grafia oficial: **`202Lab.`** (com ponto verde). Variante curta `202`. Nunca "202 LAB".
-- Ponto verde: sempre círculo perfeito, sempre `--verde-sinal`. Encerra frases-chave, marca item ativo, aponta o "agora".
+- Grafia no card de Instagram: **`202Lab.`** (com ponto verde), no rodapé. Variante curta `202`. (A grafia `202LAB` caixa-alta é só para rodapé de deck/PDF — não usar em Instagram.)
+- Ponto verde: sempre círculo perfeito, sempre `--verde-sinal` `#C6FF3E`. Encerra frases-chave, marca item ativo, aponta o "agora".
 
 ## Elementos gráficos
 - Ponto verde: assinatura universal (fim de headline, bullet ativo, status).
 - Dot-matrix / campo de "202" repetido: fundo de heros e capas, cinza sobre preto.
 - Linhas construtivas (hairline 1px) e mono-labels de metadado nos cantos (coordenadas, versão, status).
-- Tratamento de imagem: foto em **P&B/dessaturada**, meia-composição (imagem em cima, texto sobre preto embaixo).
+- Tratamento de imagem (**condicional**): *só* quando o card exibe imagem/print externo (recorte, foto) → foto **P&B/dessaturada**, meia-composição com a **imagem sempre acima** (proporção da amostra) e texto sobre preto embaixo. Card de puro texto → **sem foto**, tipografia sobre fundo (preto ou papel).
 
 ## Regra de ouro (inquebrável)
 Toda peça sobrepõe **editorial** (serifa de alto contraste, itálico-ênfase, respiro) **e técnico** (mono uppercase, coordenadas, hairlines, verde de sinal). Nunca só um dos dois: serifa sozinha vira banca de advocacia; técnico sozinho vira "mais uma startup".
