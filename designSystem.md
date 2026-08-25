@@ -50,13 +50,18 @@ aparece só no ponto final, num sublinhado e em uma ou outra palavra).
 | `--cinza-texto` | `#8B8B85` | Cinza texto | Microcopy mono, metadados, legendas, subtítulos de apoio | canônico — design.md + feed (subtítulos cinza) |
 | `--cinza-linha` | `#262626` | Cinza linha | Hairlines, bordas, grids sobre preto | canônico — design.md |
 | `--cinza-linha-light` | `#D9D6CE` | Cinza linha (light) | Hairlines sobre papel | canônico — design.md |
-| `--verde-sinal` | `#C6FF3E` | Verde Sinal | Acento sobre preto: ponto final, links ativos, dados vivos, sublinhado de destaque | canônico — design.md + feed |
+| `--verde-sinal` | `#C6FF3E` | Verde Sinal | **Verde oficial da marca.** Acento sobre preto: ponto final, links ativos, dados vivos, sublinhado de destaque | **regra forte — design.md + site + feed** (confirmado no CSS: `--verde-sinal:#c6ff3e`) |
 | `--verde-tinta` | `#3D7A00` | Verde tinta | Verde para fundos claros (o Sinal falha contraste sobre branco) | canônico — design.md; consistente com o ponto verde escuro no post "construtores." sobre papel |
+| `--fio-estrutura` | `#33332E` | Fio estrutura | Hairlines/malha construtiva do site (linhas de construção sobre preto) | **canônico — CSS do site** (`--fio-estrutura:#33332e`) |
+| `--verde-codigo` | `#28D305` | Verde código | **Efeito do hero apenas** (digitação/"código" da malha animada). **NÃO é cor de marca** — não usar em criativos | **canônico — CSS do site** (`--verde-codigo:#28d305`); escopo restrito ao hero por decisão |
+| `--padrao-repouso` | `#171717` / `#101010` | Padrão repouso | Cinza de fundo da malha em repouso (web) | canônico — CSS do site (`--padrao-repouso`; dois valores entre os módulos) |
 
-**Regras de cor (canônico — design.md):**
+**Regras de cor (canônico — design.md; CSS confirma tokens):**
+- **Verde oficial da marca = `--verde-sinal #C6FF3E`.** O `--verde-codigo #28D305` é efeito do hero, não cor de marca; nunca entra em criativo.
 - Verde nunca em área grande, nunca como fundo de seção, nunca em texto longo. Quanto menos verde, mais forte ele fica.
 - Sobre fundo claro, `--verde-sinal` só em elementos ≥ bold ou ≥ 24px; texto verde em fundo claro usa `--verde-tinta`.
-- Não existem outras cores no sistema da marca-mãe.
+- `--fio-estrutura`, `--verde-codigo` e `--padrao-repouso` são **tokens de contexto web** (hero/malha), não da paleta de criativos. Registrados aqui para completude do sistema.
+- Não existem outras cores de marca além das acima.
 - Cores por frente (Build/Growth/AI) são tese futura — **não externalizar** antes de alinhar coerência (ver Decisões pendentes).
 
 ---
@@ -107,7 +112,13 @@ a licença completa é opcional e só para eventual texto corrente. (canônico �
 - **Wordmark `202Lab.`** no hero (site) e no rodapé do card (feed), discreto. (canônico — site + feed)
 - **Muito respiro / preto profundo:** composição editorial com título ocupando faixa vertical central e vazio deliberado em volta. (canônico — design.md "elegância, muito respiro" + feed)
 - **Números gigantes / "202" como marca d'água** de baixo contraste atrás do texto. (amostra de feed — card "Potencializamos talentos"; alinhado ao "números gigantes" do design.md)
-- Grid, margens exatas e colunas: **não definidos numericamente** em nenhuma fonte recebida → Decisões pendentes.
+
+### Grid e medidas — WEB (confirmado pelo CSS do site)
+- **Margem base:** `--margem: 3rem` (desktop), `1.5rem` (mobile ≤720px). (CSS: `:root` + media query)
+- **Estrutura da tela:** `.tela` é grid de três faixas verticais — `grid-template-rows: auto 1fr auto` = **topo / centro / base**, altura `100dvh`, padding = `--margem`. (CSS)
+- **Label mono:** `--text-label: .75rem`, `--tracking-label: .1em`, uppercase, `--cinza-texto`, `line-height 1.7`. (CSS — confirma a regra de mono-label)
+- **Oneliner (display do site):** `clamp(1.5rem, 2.6vw, 2.4rem)`, Fraunces `opsz 144`, weight 300, `letter-spacing -.01em`, `line-height 1.18`. (CSS)
+- ⚠️ **Estas medidas são do SITE, não do card de Instagram.** O grid de três faixas e a margem `3rem` valem para web. O card 4:5 tem métrica própria, a ser definida no piloto do Ciclo 1 — **não** herdar a margem do site para o post.
 
 ---
 
@@ -116,7 +127,11 @@ a licença completa é opcional e só para eventual texto corrente. (canônico �
 - **Wordmark:** `202Lab.` — "202 Lab" em The Seasons + **ponto verde** final. Variante curta `202`. É SVG/imagem, sem dependência de licença web. (canônico — design.md + feed + site: `aria-label="202Lab"`, `<title>202Lab — …`, `data-logo`)
 - **Bilíngue:** o site oficial roda em **PT-BR e EN** (toggle `PT / EN`, `<html lang="pt-BR">`). A marca precisa funcionar nos dois idiomas — considerar ao definir copy e frases-mãe. (canônico — site)
 - **O "202" tem leitura conceitual:** metade de 404 ("onde muitos veem 'não encontrado', a 202 vê espaço para criação"); origem no quarto 202 do ITA em São José dos Campos, cujas coordenadas entram como metadado de marca. (canônico — design.md + pitch reforça o vínculo com o ITA)
-- **Nomenclatura:** design.md, feed **e site** usam **"202Lab." / "202 Lab."**; só o pitch usa **"202 LAB"** (caixa alta, sem ponto). Com o site, o placar é 3 fontes canônicas a 1 a favor de `202Lab.` — a recomendação forte é adotar `202Lab.` como grafia oficial e tratar o "202 LAB" do pitch como desalinhamento a corrigir. (ver Decisões pendentes)
+- **Nomenclatura (RESOLVIDO — decisão do fundador):** grafia é **contextual**, não única.
+  - **Logo / escrita grande / título:** `202Lab.` (The Seasons + ponto verde). Grafia oficial da marca.
+  - **Rodapé / assinatura de deck e PDF:** `202LAB` (caixa alta, sem ponto), como no pitch. Aqui o `202LAB` **não é desalinhamento** — é o uso de rodapé institucional.
+  - **Rodapé do card de Instagram:** `202Lab.` com ponto verde (segue a amostra de feed, não o deck).
+  Ou seja: `202Lab.` em logo/título e em rodapé de Instagram; `202LAB` só em rodapé/assinatura de deck/PDF.
 - **Ponto verde:** menor elemento da marca e o mais importante depois do "202". Sempre círculo perfeito, sempre Verde Sinal. Encerra frases-chave, marca item ativo, pisca como cursor, aponta o "agora". (canônico — design.md + feed)
 - Área de proteção / clear space, tamanho mínimo, versões mono do logo: **não definidos** → Decisões pendentes.
 
@@ -131,9 +146,9 @@ a licença completa é opcional e só para eventual texto corrente. (canônico �
 | **Linhas construtivas** | Hairlines de 1px que "constroem" o glifo/composição: eixos que atravessam a tela, círculos de construção, ponto verde na interseção. "Consultoria que constrói." | canônico — design.md; feed card "skin in the game" usa hairline separando título de subtítulo |
 | **Mono-labels** | Pares de metadado técnico nos cantos: coordenadas, timestamp, versão, status. `IBM Plex Mono 11–12px, uppercase, tracking 0.1em, --cinza-texto`. | canônico — design.md |
 | **Hairline + label** | Linha horizontal fina conectando um label mono a um conteúdo. | canônico — design.md + feed |
-| **Sublinhado verde** | Destaque de palavra/linha com traço `--verde-sinal` sob texto display. | amostra de feed — card "celeiro de mentes brilhantes" (a confirmar como regra) |
-| **Marca d'água "202"** | Numeral gigante de contorno/baixo contraste atrás do texto. | amostra de feed (a confirmar) |
-| **Tratamento de imagem** | Foto em **preto e branco / dessaturada**, meia-composição (imagem em cima, texto sobre preto embaixo). | amostra de feed — cards ITA e "exame" (a confirmar — só no post) |
+| **Sublinhado verde** | Destaque de palavra/linha com traço `--verde-sinal` sob texto display. | **regra forte — confirmado como padrão de marca** (decisão do fundador) |
+| **Marca d'água "202"** | Numeral gigante de contorno/baixo contraste atrás do texto. | **regra forte — confirmado como padrão de marca** (decisão do fundador) |
+| **Tratamento de imagem (CONDICIONAL)** | **Só quando o card exibe imagem/print externo** (recorte de imprensa, foto): foto em **preto e branco / dessaturada**, em **meia-composição — imagem sempre ACIMA, na proporção da amostra**, texto sobre preto embaixo. **Cards de puro texto NÃO usam foto** (tipografia sobre fundo preto ou papel). | **regra forte — decisão do fundador** (refina a amostra: cards ITA/"exame" eram os que traziam imagem externa) |
 | **Hero animado (web)** | Abertura do site anima o wordmark/frase-mãe letra a letra sobre um campo de glifos, com efeito **"lanterna"** (spotlight que revela), **cursor piscante**, **pulso** e **vinheta**. Marcação: `data-glifo/-glifos`, `data-lanterna` (+ `--lanterna-x/-y`, `--escala-lanterna`), `data-ponto`, `data-cursor`, `data-vinheta`, `data-fase/-abertura`. | **canônico — site** (novo; concretiza o "cursor que pisca / ponto que aponta o agora" do design.md) |
 
 ### Tensão conceitual que É a marca (canônico — design.md)
@@ -229,15 +244,16 @@ Diferenças **observáveis** entre as três superfícies:
 > **[BUSCAR]** = material a recuperar antes do piloto do Ciclo 1 (ganho grande, não bloqueio).
 > **[C2]** = pertence ao Ciclo 2 (LinkedIn). **[FUTURO]** = tese futura / cosmético, não trava nada.
 
-1. **[JÁ] Grafia oficial do wordmark** — quase resolvida. Site confirma `202Lab.` (3 fontes canônicas × 1). Falta a decisão formal de padronizar `202Lab.` e corrigir o "202 LAB" do pitch. **Decidir antes de gerar a skill de Instagram** (toda peça precisa da grafia fixa).
-2. **[BUSCAR] Grid, margens e colunas:** ainda sem valores numéricos. O CSS do site (`_files/*.css`) não veio; se recuperado, extrai gutter/margem/breakpoints reais. Beneficia a peça de Instagram.
-3. **[BUSCAR] CSS externo do site não recebido:** vieram `<head>`, hero e marcação, mas não os `_files/*.css`, e o corpo é hidratado via JS. Escala aplicada, regras de cor no CSS e layout do corpo continuam **não confirmados no site**. Reenviar os CSS ou um screenshot da página renderizada fecharia isso.
+1. ~~**Grafia oficial do wordmark**~~ — **RESOLVIDO.** Contextual: `202Lab.` em logo/título e rodapé de Instagram; `202LAB` em rodapé/assinatura de deck/PDF. (ver §4)
+2. ~~**Grid, margens e colunas (web)**~~ — **RESOLVIDO para web.** CSS confirma `--margem: 3rem`/`1.5rem` e grid `.tela` de três faixas (`auto 1fr auto`). (ver §3) — *Falta ainda a métrica do card 4:5 de Instagram, a definir no piloto.*
+3. ~~**CSS externo do site**~~ — **RESOLVIDO.** CSS recebido; cores, tokens de fonte, margem e movimento confirmados e incorporados (§1, §2, §3, §5).
 4. **[FUTURO] Cores por frente (Build / Growth / AI):** "tese futura, não externalizar" (design.md). Decidir se entram e como convivem com "não existem outras cores".
 5. **[FUTURO] Logo — área de proteção, tamanho mínimo, versões mono/reversa:** não definidos em nenhuma fonte.
-6. **[JÁ/Ciclo 1] Tratamento de imagem como regra:** P&B/meia-composição só na amostra de feed. Confirmar se é padrão de marca — relevante para a peça de Instagram.
-7. **[JÁ/Ciclo 1] Sublinhado verde e marca d'água "202":** vistos só no feed. Confirmar se são elemento oficial do sistema.
-8. **[FUTURO] `--verde-tinta` em fundo claro:** conferir o hex do ponto verde do post "construtores." (sobre papel) contra o token.
-9. **[FUTURO] Bold Italic:** The Seasons não tem; definir como resolver ênfase bold+itálico no display (via Fraunces).
-10. **[FUTURO] Escopo dos tokens de movimento:** os `--d-*`/`--t-*` do hero são específicos da abertura ou viram tokens globais de motion? Definir escala de duração/easing reutilizável. (Web; não afeta Instagram estático.)
-11. **[C2/FUTURO] Versão EN da marca:** o site é bilíngue. Definir tratamento das frases-mãe e da copy em inglês.
-12. **[FUTURO] Sistema de navegação:** `A TESE` e `CONTATO ↗` são os únicos itens vistos. Confirmar arquitetura de nav completa e o padrão da seta `↗`. (Web.)
+6. ~~**Tratamento de imagem**~~ — **RESOLVIDO.** Condicional: P&B + meia-composição (imagem sempre acima, proporção da amostra) só quando há imagem/print externo; cards de texto não usam foto. (ver §5)
+7. ~~**Sublinhado verde e marca d'água "202"**~~ — **RESOLVIDO.** Ambos confirmados como padrão de marca. (ver §5)
+8. **[C1] Métrica do card 4:5 de Instagram:** margens, área segura e proporção da faixa de imagem do card — não herdar do grid do site. Definir no piloto do Ciclo 1.
+9. **[FUTURO] `--verde-tinta` em fundo claro:** conferir o hex do ponto verde do post "construtores." (sobre papel) contra o token.
+10. **[FUTURO] Bold Italic:** The Seasons não tem; definir como resolver ênfase bold+itálico no display (via Fraunces).
+11. **[FUTURO] Tokens de movimento (web):** valores reais confirmados no CSS (`--d-caractere 34ms`, `--d-cursor 240ms`, `--corrida 2.8s`, `--largada .5s`, etc.). Definir se viram escala global de motion. (Web; não afeta Instagram estático.)
+12. **[C2/FUTURO] Versão EN da marca:** o site é bilíngue. Definir tratamento das frases-mãe e da copy em inglês.
+13. **[FUTURO] Sistema de navegação:** `A TESE` e `CONTATO ↗` são os únicos itens vistos. Confirmar arquitetura de nav completa e o padrão da seta `↗`. (Web.)
