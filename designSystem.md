@@ -118,7 +118,27 @@ a licença completa é opcional e só para eventual texto corrente. (canônico �
 - **Estrutura da tela:** `.tela` é grid de três faixas verticais — `grid-template-rows: auto 1fr auto` = **topo / centro / base**, altura `100dvh`, padding = `--margem`. (CSS)
 - **Label mono:** `--text-label: .75rem`, `--tracking-label: .1em`, uppercase, `--cinza-texto`, `line-height 1.7`. (CSS — confirma a regra de mono-label)
 - **Oneliner (display do site):** `clamp(1.5rem, 2.6vw, 2.4rem)`, Fraunces `opsz 144`, weight 300, `letter-spacing -.01em`, `line-height 1.18`. (CSS)
-- ⚠️ **Estas medidas são do SITE, não do card de Instagram.** O grid de três faixas e a margem `3rem` valem para web. O card 4:5 tem métrica própria, a ser definida no piloto do Ciclo 1 — **não** herdar a margem do site para o post.
+- ⚠️ **Estas medidas são do SITE, não do card de Instagram.** O grid de três faixas e a margem `3rem` valem para web. O card 4:5 tem métrica própria — **medida na amostra real, ver abaixo**.
+
+### Métrica do card de Instagram (MEDIDA na amostra real — Ciclo 1)
+Levantada por análise de pixel dos 6 cards do carrossel (`insta1–6`, todos 1296×1620).
+
+| Medida | Valor | Como foi obtido |
+|---|---|---|
+| Canvas | **1296 × 1620 px** (4:5 exato) | dimensão dos 6 cards |
+| Margem lateral | **~124 px** (≈9.6% da largura) | 1ª coluna de texto claro: 119–126px nos 4 cards de texto; wordmark inicia em 124–126px |
+| Margem superior | **~128 px** | kicker mono começa em y≈132 (C3, C5) |
+| Margem inferior | **~128 px** | baseline do wordmark a 125–145px do fundo |
+| Kicker (topo) | mono uppercase, `--cinza-texto`, baseline ~132px do topo, na margem esquerda | C3 "O NOVO PANORAMA", C5 "Como resolvemos?" |
+| Wordmark (base) | rodapé esquerdo, alinhado à margem lateral, baseline ~124px do fundo | C1, C5 |
+| "arraste →" (base) | rodapé direito, mono `--cinza-texto`, alinhado à margem direita (~124px) | C1 |
+| **Faixa de imagem** (meia-composição) | **39% superior** da altura (~632px); texto nos 61% inferiores; imagem sempre ACIMA, corte reto | C2 (ITA) corta em y≈633 (0.390); C4 (exame) em y≈629 (0.388) — **convergência dos dois cards de imagem** |
+
+**Sistema implícito:** margem uniforme de ~124px (≈9.6% da largura) em todos os lados; grade
+vertical de três faixas (topo=kicker / centro=título+subtítulo / base=wordmark+navegação),
+espelhando o grid `.tela` do site (`auto 1fr auto`). A margem escala como **~9.6% da largura**
+se o canvas mudar. A linha de corte da meia-composição é **regra forte** (dois cards independentes
+convergem em ~39%).
 
 ---
 
@@ -251,7 +271,7 @@ Diferenças **observáveis** entre as três superfícies:
 5. **[FUTURO] Logo — área de proteção, tamanho mínimo, versões mono/reversa:** não definidos em nenhuma fonte.
 6. ~~**Tratamento de imagem**~~ — **RESOLVIDO.** Condicional: P&B + meia-composição (imagem sempre acima, proporção da amostra) só quando há imagem/print externo; cards de texto não usam foto. (ver §5)
 7. ~~**Sublinhado verde e marca d'água "202"**~~ — **RESOLVIDO.** Ambos confirmados como padrão de marca. (ver §5)
-8. **[C1] Métrica do card 4:5 de Instagram:** margens, área segura e proporção da faixa de imagem do card — não herdar do grid do site. Definir no piloto do Ciclo 1.
+8. ~~**Métrica do card 4:5 de Instagram**~~ — **RESOLVIDO.** Medida na amostra real (6 cards): canvas 1296×1620, margem ~124px (≈9.6%) uniforme, grade de 3 faixas, faixa de imagem 39% no topo. (ver §3)
 9. **[FUTURO] `--verde-tinta` em fundo claro:** conferir o hex do ponto verde do post "construtores." (sobre papel) contra o token.
 10. **[FUTURO] Bold Italic:** The Seasons não tem; definir como resolver ênfase bold+itálico no display (via Fraunces).
 11. **[FUTURO] Tokens de movimento (web):** valores reais confirmados no CSS (`--d-caractere 34ms`, `--d-cursor 240ms`, `--corrida 2.8s`, `--largada .5s`, etc.). Definir se viram escala global de motion. (Web; não afeta Instagram estático.)
