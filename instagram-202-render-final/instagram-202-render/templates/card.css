@@ -1,0 +1,129 @@
+/* =========================================================================
+   202 · CSS base do card de Instagram (Ciclo 1)
+   Codifica a MÉTRICA MEDIDA na amostra real (design.rules.md / design-system.md §3).
+   Canvas 1296×1620 (4:5). Margem 124px uniforme. Grade vertical de 3 faixas.
+   ========================================================================= */
+
+/* Fontes ESTÁTICAS (peso instanciado) — variable fonts causam glifos duplicados no wkhtmltoimage.
+   TÍTULO: Playfair Display (bate com o carrossel real da 202). Ver "Nota de tipografia" no SKILL.md. */
+@font-face { font-family: 'TituloDisplay'; src: url('FONT_DIR/Playfair-Display.ttf');       font-weight: normal; font-style: normal; }
+@font-face { font-family: 'TituloDisplay'; src: url('FONT_DIR/Playfair-DisplayItalic.ttf'); font-weight: normal; font-style: italic; }
+@font-face { font-family: 'Inter';         src: url('FONT_DIR/Inter-Reg.ttf');              font-weight: normal; }
+@font-face { font-family: 'Inter';         src: url('FONT_DIR/Inter-Bd.ttf');               font-weight: bold; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('FONT_DIR/IBMPlexMono-Regular.ttf');     font-weight: normal; }
+
+:root{
+  --preto-202:#0A0A0A; --papel:#F4F2ED; --branco-202:#FFFFFF;
+  --cinza-texto:#8B8B85; --cinza-linha:#262626; --cinza-linha-light:#D9D6CE;
+  --verde-sinal:#C6FF3E; --verde-tinta:#3D7A00;
+  --margem:124px; --canvas-w:1296px; --canvas-h:1620px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+
+.card{
+  position:relative; width:var(--canvas-w); height:var(--canvas-h);
+  background:var(--preto-202); color:var(--branco-202); overflow:hidden;
+  font-family:'Inter',sans-serif;
+}
+.card.papel{background:var(--papel); color:var(--preto-202);}
+
+/* Coluna de conteúdo: margem uniforme via padding. 3 zonas: topo(kicker) / meio(título) / base fica no rodapé absoluto. */
+.col{
+  position:absolute; inset:0;
+  padding:var(--margem);
+  padding-bottom:calc(var(--margem) + 120px);  /* reserva a faixa do rodapé */
+  display:flex; flex-direction:column;
+  z-index:1;
+}
+/* zona do meio (título+subtítulo). Âncora vertical por padding-top medido no canvas 1620. */
+.col .meio{ display:flex; flex-direction:column; }
+.col.v-top    { justify-content:flex-start; }
+.col.v-center { justify-content:center; }
+/* v-low / v-fecho: título arranca na metade inferior. Medido: abertura ~707px (0.44).
+   v-low usa top fixo; v-fecho ancora pela BASE (título cresce para cima), evitando
+   colisão com a marca d'água e estouro no rodapé quando o título tem muitas linhas. */
+.col.v-low{ inset:auto; left:var(--margem); right:var(--margem); padding:0; height:auto; top:707px; }
+.col.v-fecho{ inset:auto; left:var(--margem); right:var(--margem); padding:0; height:auto;
+  bottom:calc(var(--margem) + 96px); top:auto; }
+
+/* kicker ocupa a primeira zona, no fluxo, com respiro até o título. */
+.kicker{
+  font-family:'IBM Plex Mono',monospace; font-size:27px; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--cinza-texto); line-height:1.7;
+  margin-bottom:56px;   /* respiro medido entre kicker e título */
+}
+/* quando a âncora é low/center, o kicker precisa ficar preso ao topo:
+   usa-se margin-bottom:auto para empurrar o resto para baixo. */
+.col.v-low .kicker, .col.v-center .kicker{ margin-bottom:auto; }
+.col .meio.after-kicker{ margin-top:0; }
+
+/* TÍTULO display Fraunces. Peso padrão mais encorpado (medido: títulos reais são cheios). */
+.titulo{
+  font-family:'TituloDisplay',serif; font-weight:normal; font-style:normal;
+  line-height:1.08; letter-spacing:-0.015em; color:inherit;
+}
+.titulo .enf  { font-style:italic; font-weight:normal; }
+.titulo .ponto{ color:var(--verde-sinal); font-style:normal; }
+.card.papel .titulo .ponto{ color:var(--verde-tinta); }
+
+/* Escala — grande ou pequeno, nunca médio burocrático. */
+.t-XL{ font-size:150px; } .t-L{ font-size:118px; } .t-M{ font-size:96px; }
+
+/* Sublinhado verde sob display. text-decoration com offset respeita quebra de linha
+   e afasta a linha da base (respiro), sem colar nas descendentes. */
+.titulo .sub{
+  text-decoration: underline;
+  text-decoration-color: var(--verde-sinal);
+  text-decoration-thickness: 9px;
+  text-underline-offset: 22px;
+}
+
+/* Subtítulo Inter cinza. */
+.subtitulo{
+  font-family:'Inter',sans-serif; font-weight:normal; font-size:44px; line-height:1.5;
+  color:var(--cinza-texto); max-width:62ch; margin-top:44px;
+}
+.subtitulo .hl{ color:inherit; font-weight:bold; }
+.subtitulo .sub{
+  text-decoration: underline;
+  text-decoration-color: var(--verde-sinal);
+  text-decoration-thickness: 5px;
+  text-underline-offset: 10px;
+}
+.hairline{ height:1px; background:var(--cinza-linha); border:0; margin:44px 0; width:100%; }
+.card.papel .hairline{ background:var(--cinza-linha-light); }
+
+/* BASE: wordmark (esq) + arraste (dir). */
+.rodape{
+  position:absolute; left:var(--margem); right:var(--margem); bottom:var(--margem);
+  display:flex; justify-content:space-between; align-items:flex-end; z-index:2;
+}
+.wordmark{ font-family:'IBM Plex Mono',monospace; font-size:34px; letter-spacing:0.02em; color:inherit; }
+.wordmark .ponto{ color:var(--verde-sinal); }
+.card.papel .wordmark .ponto{ color:var(--verde-tinta); }
+.arraste{ font-family:'IBM Plex Mono',monospace; font-size:30px; letter-spacing:0.08em; font-style:italic; color:var(--cinza-texto); }
+
+/* Marca d'água "202" — contorno, sangra de propósito (medido: x0→borda). Baixo/centro.
+   Contorno mais claro/espesso que a hairline base, para ler como presença fantasma. */
+.marca-dagua{
+  position:absolute; left:50%; bottom:120px; transform:translateX(-50%);
+  font-family:'TituloDisplay',serif; font-weight:normal; font-size:760px; line-height:0.8;
+  color:transparent; -webkit-text-stroke:3px #4a4a48;
+  white-space:nowrap; z-index:0; pointer-events:none;
+}
+.card.papel .marca-dagua{ -webkit-text-stroke:3px #c7c3ba; }
+
+/* Meia-composição: faixa de imagem 39% no topo (632px de 1620); texto abaixo.
+   Bloco de texto posicionado por top absoluto (evita padding transbordante que o
+   wkhtmltoimage duplica ao paginar). */
+.card.com-imagem .faixa-img{
+  position:absolute; top:0; left:0; right:0; height:632px;
+  background-size:cover; background-position:center; filter:grayscale(1); z-index:1;
+}
+.card.com-imagem .col{
+  inset:auto;                                   /* anula inset:0 do .col base */
+  top:704px; left:var(--margem); right:var(--margem); bottom:auto;
+  padding:0;
+  height:auto;
+}
+.card.com-imagem .col .meio{ padding-top:0; }
