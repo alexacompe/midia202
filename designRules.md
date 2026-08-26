@@ -43,7 +43,7 @@ mono-label       11–12px / uppercase / tracking 0.1em
 
 ## Regras de tipografia
 - The Seasons **só** no logo. Nunca em texto corrente (licença DEMO, sem acentos).
-- Ênfase = itálico da Fraunces em **no máximo uma** palavra/trecho curto. Nunca itálico swashy em trecho longo.
+- Ênfase = itálico da Playfair Display.
 - Mono sempre curto, uppercase, cinza (ou verde quando for dado vivo). Nunca mono em frase longa.
 - Corpo em Inter, 16–18px, entrelinha 1.6, largura máx. ~65ch.
 - A marca fala grande ou fala pequeno: evitar tamanhos médios burocráticos.
